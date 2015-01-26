@@ -8,13 +8,16 @@ ARDUINO_DIR   = /usr/share/arduino
 USER_LIB_PATH = $(HOME)/Arduino/libraries
 ARDUINO_LIBS  = IceC stdsys
 
+CFLAGS        = -Wno-unused-function -Wno-unused-variable
+CXXFLAGS      = $(CFLAGS)
+
 all: example.h
 
 example.h: example.ice
-	slice2c $^
+	../../icec/bin/slice2c $^
 
 vclean: clean
-	rm example.h
+	rm -frv example.h
 
 include $(ARDUINO_DIR)/Arduino.mk
 
