@@ -6,15 +6,15 @@ ARDUINO_DIR   = /usr/share/arduino
 
 # You need the icec repo on user libraries dir
 USER_LIB_PATH = $(HOME)/Arduino/libraries
-ARDUINO_LIBS  = IceC stdsys
+ARDUINO_LIBS  = IceC SerialEndpoint
 
-CFLAGS        = -Wno-unused-function -Wno-unused-variable
+CFLAGS        = -DDEBUG -Wno-unused-function -Wno-unused-variable
 CXXFLAGS      = $(CFLAGS)
 
 all: example.h
 
 example.h: example.ice
-	../../icec/bin/slice2c $^
+	slice2c $^
 
 vclean: clean
 	rm -frv example.h
