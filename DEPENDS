@@ -1,2 +1,4 @@
 arduino
 arduino-mk
+ice-serial
+python-zeroc-ice
