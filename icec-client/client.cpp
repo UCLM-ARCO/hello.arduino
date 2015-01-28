@@ -5,7 +5,9 @@
 
 #include <IceC/IceC.h>
 #include <IceC/SerialEndpoint.h>
-#include <IceC/platforms/arduino/debug.hpp>
+
+// For DEBUG only
+// #include <IceC/platforms/arduino/debug.hpp>
 
 #include "example.h"
 
@@ -17,6 +19,7 @@ bool status = true;
 
 void setup() {
     pinMode(led, OUTPUT);
+    // debug_init();
 
     Ice_initialize(&ic);
     IceC_Serial_init(&ic);

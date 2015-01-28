@@ -8,7 +8,8 @@ ARDUINO_DIR   = /usr/share/arduino
 USER_LIB_PATH = $(HOME)/Arduino/libraries
 ARDUINO_LIBS  = IceC SerialEndpoint
 
-CFLAGS        = -DDEBUG -Wno-unused-function -Wno-unused-variable
+CFLAGS        = -DDEBUG
+CFLAGS       += -Wno-unused-function -Wno-unused-variable
 CXXFLAGS      = $(CFLAGS)
 
 all: example.h
