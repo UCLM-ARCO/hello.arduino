@@ -13,14 +13,10 @@ Ice_Communicator ic;
 Ice_ObjectPrx server;
 
 int led = 13;
-bool state = true;
+bool status = true;
 
 void setup() {
     pinMode(led, OUTPUT);
-    Serial.begin(115200);
-    while(!Serial);
-
-    prints("\n\n---------------------------\n");
 
     Ice_initialize(&ic);
     IceC_Serial_init(&ic);
@@ -29,8 +25,8 @@ void setup() {
 }
 
 void loop() {
-    digitalWrite(led, state);
-    state = !state;
+    digitalWrite(led, status);
+    status = !status;
 
     Example_Hello_sayHello(&server);
     delay(1000);
