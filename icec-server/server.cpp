@@ -7,7 +7,7 @@
 #include <IceC/SerialEndpoint.h>
 
 // For DEBUG only
-#include <IceC/platforms/arduino/debug.hpp>
+// #include <IceC/platforms/arduino/debug.hpp>
 
 #include "example.h"
 
@@ -19,31 +19,24 @@ char led = 13;
 
 void
 Example_HelloI_sayHello(Example_HelloPtr self) {
-    prints("HELLO\n");
-    while(true);
-
-    bool state = false;
-
-    for (int i=0; i<10; i++) {
-	digitalWrite(led, state);
-	state = !state;
-	delay(50);
-    }
+    static bool state = false;
+    digitalWrite(led, state);
+    state = !state;
 }
 
 void setup() {
     pinMode(led, OUTPUT);
-    debug_init();
-    digitalWrite(led, false);
+    // debug_init();
 
-    led_blink(50);
-    led_blink(50);
+    digitalWrite(led, true);
+    delay(1000);
+    digitalWrite(led, false);
 
     Ice_initialize(&ic);
     IceC_Serial_init(&ic);
 
     Ice_Communicator_createObjectAdapterWithEndpoints
-	(&ic, "Adapter", "serial", &adapter);
+    	(&ic, "Adapter", "serial", &adapter);
     Ice_ObjectAdapter_activate(&adapter);
 
     Example_Hello_init(&servant);

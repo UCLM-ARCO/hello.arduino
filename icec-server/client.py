@@ -1,7 +1,6 @@
 #!/usr/bin/python -u
 # -*- mode: python; coding: utf-8 -*-
 
-import time
 import sys
 import Ice
 
@@ -21,12 +20,11 @@ class Client(Ice.Application):
         proxy = Example.HelloPrx.uncheckedCast(proxy)
         proxy = proxy.ice_encodingVersion(Ice.Encoding_1_0)
         proxy.sayHello()
-        print "Hello said."
+
+        print "Hello said, client goes to sleep."
+        # import time
+        # time.sleep(100)
 
 if __name__ == '__main__':
-    # Note: pyserial resets the arduino (on enter, and on exit), so
-    # sleeps here are to let it run correctly
-
     Client().main(sys.argv, "config")
-    time.sleep(1)
     print "OK"

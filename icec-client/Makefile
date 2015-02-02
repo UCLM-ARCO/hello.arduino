@@ -1,7 +1,10 @@
 # -*- mode: makefile-gmake; coding: utf-8 -*-
 
 # Arduino Pro or Pro Mini (5V, 16 MHz) w/ ATmega328
-BOARD_TAG     = pro5v328
+# BOARD_TAG     = pro5v328
+
+# Arduino Duemilanove w/ ATmega328
+BOARD_TAG     = atmega328
 ARDUINO_DIR   = /usr/share/arduino
 
 # You need the icec repo on user libraries dir
