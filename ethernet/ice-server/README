@@ -1,0 +1,4 @@
+Description
+===========
+
+A light controller. Conect a Relay bit on O0. Use client.py to change state.
