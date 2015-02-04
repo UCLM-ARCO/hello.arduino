@@ -46,6 +46,4 @@ void setup() {
 }
 
 void loop() {
-    digitalWrite(led, true);
-    delay(1000);
 }

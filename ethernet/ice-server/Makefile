@@ -11,7 +11,8 @@ ARDUINO_DIR   = /usr/share/arduino
 USER_LIB_PATH = $(HOME)/Arduino/libraries
 ARDUINO_LIBS  = TinkerKit IceC
 
-# CFLAGS        = -DDEBUG
+CFLAGS        = -DDEBUG
+CFLAGS       += -DDEBUG_LED=9
 CFLAGS       += -Wno-unused-function -Wno-unused-variable
 CXXFLAGS      = $(CFLAGS)
 

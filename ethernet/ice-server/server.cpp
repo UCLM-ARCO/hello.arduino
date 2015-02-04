@@ -1,60 +1,48 @@
 // -*- mode: c++; coding: utf-8 -*-
 
 #include <Arduino.h>
+#include <TinkerKit.h>
+#include <IceC/IceC.h>
 
-void
-setup() {
-}
-
-void
-loop() {
-}
-
-
-
-// #include <IceC/IceC.h>
 // #include <IceC/SerialEndpoint.h>
 
-// // For DEBUG only
-// // #include <IceC/platforms/arduino/debug.hpp>
+// For DEBUG only
+#include <IceC/platforms/arduino/debug.hpp>
 
-// #include "example.h"
+#include "example.h"
 
-// Ice_Communicator ic;
-// Ice_ObjectAdapter adapter;
-// Example_Hello servant;
+Ice_Communicator ic;
+Ice_ObjectAdapter adapter;
+Example_Light servant;
 
-// char led = 13;
+byte led = 9;
+TKLed light(O0);
 
-// void
-// Example_HelloI_sayHello(Example_HelloPtr self) {
-//     static bool state = false;
-//     digitalWrite(led, state);
-//     state = !state;
-// }
+void
+Example_LightI_sayHello(Example_LightPtr self, Ice_Bool state) {
+    light.write(state);
+}
 
-// void setup() {
-//     pinMode(led, OUTPUT);
-//     // debug_init();
+void setup() {
+    pinMode(led, OUTPUT);
+    debug_init();
 
-//     digitalWrite(led, true);
-//     delay(1000);
-//     digitalWrite(led, false);
+    digitalWrite(led, true);
+    delay(1000);
+    digitalWrite(led, false);
 
-//     Ice_initialize(&ic);
-//     IceC_Serial_init(&ic);
+    Ice_initialize(&ic);
+    // IceC_Serial_init(&ic);
 
-//     Ice_Communicator_createObjectAdapterWithEndpoints
-//     	(&ic, "Adapter", "serial", &adapter);
-//     Ice_ObjectAdapter_activate(&adapter);
+    Ice_Communicator_createObjectAdapterWithEndpoints
+     	(&ic, "Adapter", "udp -h 127.0.0.1 -p 7788", &adapter);
+    Ice_ObjectAdapter_activate(&adapter);
 
-//     Example_Hello_init(&servant);
-//     Ice_ObjectAdapter_add(&adapter, (Ice_ObjectPtr)&servant, "Server");
+    Example_Light_init(&servant);
+    Ice_ObjectAdapter_add(&adapter, (Ice_ObjectPtr)&servant, "Light");
 
-//     Ice_Communicator_waitForShutdown(&ic);
-// }
+    Ice_Communicator_waitForShutdown(&ic);
+}
 
-// void loop() {
-//     digitalWrite(led, true);
-//     delay(1000);
-// }
+void loop() {
+}
