@@ -6,6 +6,7 @@ ARDUINO_DIR   = /usr/share/arduino
 
 # You may need your own libraries location
 USER_LIB_PATH = $(HOME)/Arduino/libraries
+ARDUINO_LIBS  =
 
 # If you have annoying messages on some Arduino libraries...
 CFLAGS       += -Wno-unused-function -Wno-unused-variable
